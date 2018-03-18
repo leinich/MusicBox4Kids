@@ -1,6 +1,16 @@
 # MusicBox4Kids
 ## Description
-TODO
+My kids like to have a music box in their room to listen to music.
+I looked around but I was not able to find something I really liked. So it was time to make a MusicBox for my kids.
+This is my final solution:
+![Alt text](/images/MusicBox4Kids-picture.jpg?raw=true "Final Box")
+
+My kids can simply lay a rfid/nfc tag on the top of th box.
+As soon as the tag is read it will look for a playlist with the same id. e.g. 5454868928.m3u
+
+To deploy new music, I simply lay a new tag on the box and I will find the tagid XYZ.todo in the playlist folder under /home/pi/playlist.
+I creat a new m3u playlist and copy the new playlist XYZ together with the mp3 files on the box.
+Finished!
 
 ## Hardware
 For this project following hardware was used:
@@ -24,5 +34,10 @@ TODO
 6. Test if the MIFARE RC522 is connected successfully by calling following You should see some information about the NFC chip once you place the chip to the reader `python ./MFRC522-python/Read.py`
 7. Start the musicbox to check if the push buttons are attached correctly by pressing the buttons `python ./MusicBox4Kids/MusicBox4Kids.py`
    The results should be shown in the command line.
+8. Now we need to add this script to run automatically. You can use the service script by perfomring following:
+   `sudo chmod 755 ~/MusicBox4Kids/scripts/MusicBox4Kids-service.sh`
+   `sudo cp ~/MusicBox4Kids/scripts/MusicBox4Kids-service.sh /etc/init.d`
+   `sudo update-rc.d MusicBox4Kids-service.sh defaults`
+   You should be able to use now:
+   `sudo /etc/init.d/MusicBox4Kids-service.sh start/stop/restart/status`
 
-TODO Document Autorun
